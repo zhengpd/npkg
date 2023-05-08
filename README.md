@@ -4,15 +4,20 @@
 Under the hood, it use nix profile commands. The packages are managed with the
 default profile of nix.
 
-## TODO
-
-- [ ] zsh completion
-
 ## Installation
 
 ```zsh
+# install task with
+#   brew install task
+# or
+#   nix profile install go-task
+#
+# make sure "echo $fpath" includes ~/.local/share/zsh/completions
+# if not, add following line to .zshrc:
+#   fpath+=("$HOME/.local/share/zsh/completions")
+
 git clone https://github.com/zhengpd/npkg.git npkg
-cd npkg && go install
+cd npkg && task build
 ```
 
 ## Usage
@@ -43,3 +48,4 @@ GLOBAL OPTIONS:
 - [cli](https://github.com/urfave/cli): a useful package for building cli commands in Go
 - [nixpkgs](https://github.com/NixOS/nixpkgs): a large software packages repository
 - [nix](https://github.com/NixOS/nix): a powerful package manager
+- [task](https://github.com/go-task/task): a task runner / build tool that aims to be simpler and easier to use

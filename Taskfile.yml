@@ -1,0 +1,9 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - go build
+      - mv -f ./npkg $HOME/.local/bin/npkg
+      - mkdir -p ~/.local/share/zsh/completions
+      - ln -sf $PWD/npkg.completion.zsh ~/.local/share/zsh/completions/_npkg
