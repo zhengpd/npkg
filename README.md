@@ -31,6 +31,7 @@ COMMANDS:
    list, l     list installed packages in nix default profile
    upgrade, u  upgrade installed package in nix default profile
    remove, r   remove installed package from nix default profile
+   clean-up    clean up duplicate packages from nix default profile
    help, h     Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
