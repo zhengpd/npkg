@@ -124,6 +124,34 @@ func main() {
 					return nil
 				},
 			},
+			{
+				Name:  "clean-up",
+				Usage: "clean up duplicate packages from nix default profile",
+				Action: func(cCtx *cli.Context) error {
+					names := get_local_pkgs()
+					names_map := map[string]int{}
+
+					for _, name := range names {
+						if _, ok := names_map[name]; ok {
+							cmd := exec.Command("nix", "profile", "remove", build_pkg_path(name))
+							cmd.Stdout = os.Stdout
+							if err := cmd.Run(); err != nil {
+								log.Fatal(err)
+							}
+
+							cmd = exec.Command("nix", "profile", "install", "nixpkgs#"+name)
+							cmd.Stdout = os.Stdout
+							if err := cmd.Run(); err != nil {
+								log.Fatal(err)
+							}
+						} else {
+							names_map[name] = 1
+						}
+					}
+
+					return nil
+				},
+			},
 		},
 	}
 
